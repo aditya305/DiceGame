@@ -12,7 +12,7 @@ class dice extends StatelessWidget {
       Scaffold(
         backgroundColor: Colors.black,
         body: Column( crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[ SizedBox(height: 90.0),
+          children: <Widget>[ // SizedBox(height: 90.0),
             Flexible(
                           child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +35,16 @@ class dice extends StatelessWidget {
               Flexible(child: SvgPicture.asset('assets/svgicon/flutterinteract.svg')),
               SizedBox(height: 27.0,),
               Text('Viewing Party 2019', style: TextStyle(color: Colors.white, fontFamily: 'OpenSans', fontSize: 32), ),
+              SizedBox(height: 25,),
               Flexible(child: RollDice()), 
+          ],
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent, elevation: 0.0, bottomOpacity: 0.0, actions: <Widget>[
+          IconButton(icon: Icon( Icons.info ), onPressed: () {
+            Navigator.of(context).pushNamed('/info');
+          },
+          iconSize: 40,),
           ],
         ),
     );
@@ -47,18 +56,22 @@ class RollDice extends StatefulWidget {
   _RollDiceState createState() => _RollDiceState();
 }
 
-class _RollDiceState extends State<RollDice> { 
-  int DiceNumber = 1;
-  void RandomDiceNumber() {
-    DiceNumber = Random().nextInt(6) + 1;
+class _RollDiceState extends State<RollDice> {
+  int diceNumber = 1;
+  void RandomdiceNumber() {
+    diceNumber = Random().nextInt(6) + 1;
   }
   @override
   Widget build(BuildContext context) {
-    return FlatButton(child: Image.asset("assets/diceimages/dice$DiceNumber.png", scale: 0.24,), onPressed: () {
-      setState(() {
-        RandomDiceNumber();
-      });
-      print('Button was pressed');
-    },);
+    return FlatButton(
+      child: Image.asset('assets/diceimages/dice$diceNumber.png'),
+      onPressed: (){
+        setState(() {
+          RandomdiceNumber();
+          print(diceNumber);
+        });
+        
+      },
+    );
   }
 }
