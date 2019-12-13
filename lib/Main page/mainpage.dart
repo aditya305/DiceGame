@@ -111,21 +111,24 @@ class _RollDiceState extends State<RollDice> {
           if (luckyNumber == nluckyNumber) {
             showDialog(
                 context: context,
-                builder: (_) => NetworkGiffyDialog(
-                      image: Image.network(
-                          "https://tenor.com/view/con-gif-4384522"),
-                      title: Text('Congratulations',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 22.0, fontWeight: FontWeight.w600)),
-                      description: Text(
-                        'You Have Won',
-                        textAlign: TextAlign.center,
+                builder: (_) => AssetGiffyDialog(
+                      image: Image.asset('assets/gif/congatulations.gif'),
+                      title: Text(
+                        'Congratulations',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'OpenSans'),
                       ),
-                      entryAnimation: EntryAnimation.BOTTOM_LEFT,
+                      description: Text(
+                        'You have won the course',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(),
+                      ),
+                      entryAnimation: EntryAnimation.TOP,
                       onlyOkButton: true,
-                      onOkButtonPressed: (){
-                        
+                      onOkButtonPressed: () {
+                        Navigator.pop(context);
                       },
                     ));
           }
