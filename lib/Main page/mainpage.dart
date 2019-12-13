@@ -1,9 +1,10 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:giffy_dialog/giffy_dialog.dart';
 
 class dice extends StatelessWidget {
   const dice({Key key}) : super(key: key);
@@ -44,7 +45,9 @@ class dice extends StatelessWidget {
             height: 25.0,
           ),
           Flexible(
-              child: SvgPicture.asset('assets/svgicon/flutterinteract.svg',)),
+              child: SvgPicture.asset(
+            'assets/svgicon/flutterinteract.svg',
+          )),
           SizedBox(
             height: 27.0,
           ),
@@ -84,8 +87,16 @@ class RollDice extends StatefulWidget {
 
 class _RollDiceState extends State<RollDice> {
   int diceNumber = 1;
+
   void RandomdiceNumber() {
     diceNumber = Random().nextInt(6) + 1;
+  }
+
+  int luckyNumber = 16;
+  int nluckyNumber;
+
+  void LuckyNumber() {
+    nluckyNumber = Random().nextInt(16) + 1;
   }
 
   @override
@@ -96,6 +107,28 @@ class _RollDiceState extends State<RollDice> {
         setState(() {
           RandomdiceNumber();
           print(diceNumber);
+          LuckyNumber();
+          if (luckyNumber == nluckyNumber) {
+            showDialog(
+                context: context,
+                builder: (_) => NetworkGiffyDialog(
+                      image: Image.network(
+                          "https://tenor.com/view/con-gif-4384522"),
+                      title: Text('Congratulations',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 22.0, fontWeight: FontWeight.w600)),
+                      description: Text(
+                        'You Have Won',
+                        textAlign: TextAlign.center,
+                      ),
+                      entryAnimation: EntryAnimation.BOTTOM_LEFT,
+                      onlyOkButton: true,
+                      onOkButtonPressed: (){
+                        
+                      },
+                    ));
+          }
         });
       },
     );
