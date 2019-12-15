@@ -112,7 +112,7 @@ class _RollDiceState extends State<RollDice> {
             showDialog(
                 context: context,
                 builder: (_) => AssetGiffyDialog(
-                      image: Image.asset('assets/gif/congatulations.gif'),
+                      image: Image.asset('assets/gif/congatulations.gif',fit: BoxFit.fitWidth,),
                       title: Text(
                         'Congratulations',
                         style: TextStyle(
@@ -130,6 +130,7 @@ class _RollDiceState extends State<RollDice> {
                       onOkButtonPressed: () {
                         Navigator.pop(context);
                       },
+
                     ));
           }
         });
