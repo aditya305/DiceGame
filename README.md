@@ -1,4 +1,6 @@
-# dice
+# Dice
+
+This Project belongs to Flutter Mumbai Community.
 
 A new Flutter project.
 
